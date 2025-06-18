@@ -1,3 +1,4 @@
+<!-- membuat halaman home -->
 <template>
   <div class="bg-white text-gray-800 font-sans">
     <!-- Navbar -->
