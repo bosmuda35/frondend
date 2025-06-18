@@ -78,7 +78,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!--menambahkan Footer -->
     <footer class="bg-white border-t py-6 text-center text-gray-600">
       <p>&copy; 2025 Indorapet.Bosmuda.</p>
     </footer>
