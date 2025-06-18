@@ -1,7 +1,7 @@
 <!-- membuat halaman home -->
 <template>
   <div class="bg-white text-gray-800 font-sans">
-    <!-- Navbar -->
+    <!-- menambahkan Navbar -->
     <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <div class="text-xl font-bold text-green-700">Indorapet</div>
