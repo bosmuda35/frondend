@@ -1,3 +1,4 @@
+<!-- membuat halaman daftar produk -->
 <template>
   <div class="bg-white min-h-screen text-gray-800 font-inter px-4 py-32">
     <!-- navbar -->
