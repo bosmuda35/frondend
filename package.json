@@ -13,7 +13,7 @@
     "lint": "run-s lint:*"
   },
   "dependencies": {
-    "vue": "^3.5.13",
+    "vue": "^3.5.13", 
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "npm-run-all2": "^7.0.2",
     "oxlint": "^0.16.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "3",
+    "tailwindcss": "3", //install tailwind
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitest": "^3.1.1"
