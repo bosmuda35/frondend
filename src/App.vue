@@ -1,3 +1,4 @@
+<!-- panggil router view di app.vue -->
 <template>
   <router-view />
 </template>
