@@ -77,57 +77,76 @@
 </template>
 
 <script setup>
+// Import ref dan onMounted dari Vue Composition API
 import { onMounted, ref } from "vue";
 
+// State untuk menyimpan daftar produk
 const produk = ref([]);
+
+// State untuk menandai apakah sedang loading data
 const loading = ref(true);
+
+// State untuk menandai apakah form dalam mode edit
 const isEdit = ref(false);
+
+// State untuk menyimpan data form produk
 const form = ref({ id: null, nama: "", harga: 0, stok: 0 });
 
+// URL endpoint API yang digunakan untuk mengambil data produk
 const API_URL = "https://backend-indorapet.backenindorapet.workers.dev/produk";
 
+// Fungsi untuk mengambil data produk dari API
 const fetchProduk = async () => {
-  loading.value = true;
-  const res = await fetch(API_URL);
-  produk.value = await res.json();
-  loading.value = false;
+  loading.value = true; // Tampilkan loading
+  const res = await fetch(API_URL); // Ambil data dari server
+  produk.value = await res.json(); // Simpan data hasil fetch ke state produk
+  loading.value = false; // Sembunyikan loading setelah data diterima
 };
 
+// Jalankan fetchProduk saat komponen pertama kali dimuat
 onMounted(fetchProduk);
 
+// Fungsi untuk menangani pengiriman form (tambah atau edit)
 const handleSubmit = async () => {
+  // Gunakan PUT jika sedang edit, POST jika menambahkan
   const method = isEdit.value ? "PUT" : "POST";
 
+  // Kirim data ke server sesuai method (PUT/POST)
   await fetch(API_URL, {
     method,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(form.value),
+    headers: { "Content-Type": "application/json" }, // Tentukan tipe data JSON
+    body: JSON.stringify(form.value), // Ubah form menjadi JSON
   });
 
-  resetForm();
-  fetchProduk();
+  resetForm(); // Reset form setelah submit
+  fetchProduk(); // Ambil data terbaru dari server
 };
 
+// Fungsi untuk mengisi form saat ingin mengedit data
 const editProduk = (item) => {
-  isEdit.value = true;
-  form.value = { ...item };
+  isEdit.value = true; // Aktifkan mode edit
+  form.value = { ...item }; // Salin data produk ke form
 };
 
+// Fungsi untuk menghapus produk berdasarkan id
 const hapusProduk = async (id) => {
   await fetch(API_URL, {
-    method: "DELETE",
+    method: "DELETE", // Method DELETE untuk hapus data
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ id }), // Kirim id produk yang akan dihapus
   });
-  fetchProduk();
+  fetchProduk(); // Perbarui daftar produk setelah dihapus
 };
 
+// Fungsi untuk mengatur ulang form ke keadaan awal
 const resetForm = () => {
-  isEdit.value = false;
-  form.value = { id: null, nama: "", harga: 0, stok: 0 };
+  isEdit.value = false; // Kembalikan ke mode tambah
+  form.value = { id: null, nama: "", harga: 0, stok: 0 }; // Kosongkan form
 };
 
+// Fungsi bantu untuk memformat angka ke dalam format mata uang Rupiah
 function formatRupiah(value) {
-  return Number(value).toLocaleString("id-ID");
+  return Number(value).toLocaleString("id-ID"); // Contoh: 1000000 => "1.000.000"
 }
+
 </script>

@@ -43,22 +43,35 @@
 </template>
 
 <script setup>
+// Mengimpor fungsi `onMounted` dan `ref` dari Vue Composition API
 import { onMounted, ref } from "vue";
 
+// State reaktif untuk menyimpan daftar produk
 const produkList = ref([]);
+
+// State reaktif untuk menandai apakah data sedang dimuat (loading)
 const loading = ref(true);
 
+// Lifecycle hook `onMounted` akan dipanggil setelah komponen selesai dirender di DOM
 onMounted(async () => {
   try {
+    // Melakukan request GET ke URL API untuk mengambil data produk
     const res = await fetch("https://backend-indorapet.backenindorapet.workers.dev/produk");
+
+    // Jika response dari server tidak OK (bukan status 200-299), lempar error
     if (!res.ok) throw new Error("Gagal mengambil data produk");
+
+    // Jika response OK, ubah hasil JSON menjadi array produk dan simpan ke state `produkList`
     produkList.value = await res.json();
   } catch (err) {
+    // Tangani jika terjadi error saat fetch data
     console.error("Error saat fetch produk:", err);
   } finally {
+    // Set loading menjadi false baik sukses maupun gagal
     loading.value = false;
   }
 });
+
 </script>
 
 <style scoped>

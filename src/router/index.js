@@ -5,8 +5,8 @@ import HomeView from "../views/HomeView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
-  { path: "/daftarproduk", component: DaftarProdukView },
-  { path: "/admin", component: AdminView },
+  { path: "/daftarproduk", component: DaftarProdukView }, //menambahkan route ke daftar produk
+  { path: "/admin", component: AdminView }, //menambahkan route ke halaman admin
 ];
 
 export default createRouter({
